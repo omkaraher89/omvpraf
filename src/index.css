@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    --tv-bg-app: #090a0f;
+    --tv-bg-bar: rgba(14, 17, 24, 0.72);
+    --tv-bg-panel: rgba(14, 17, 24, 0.76);
+    --tv-bg-popover: rgba(23, 27, 38, 0.88);
+    --tv-bg-elevated: rgba(23, 27, 38, 0.82);
+    --tv-bg-hover: rgba(255, 255, 255, 0.08);
+    --tv-bg-active: rgba(23, 27, 38, 0.92);
+    --tv-bg-input: rgba(12, 15, 22, 0.84);
+    --tv-border: rgba(38, 43, 56, 0.78);
+    --tv-border-glass: rgba(255, 255, 255, 0.13);
+    --tv-text: #eef1f7;
+    --tv-text-secondary: #b2b7c4;
+    --tv-text-muted: #7a8091;
+    --tv-accent: #2962ff;
+    --tv-accent-soft: rgba(41, 98, 255, 0.18);
+    --tv-accent-border: rgba(41, 98, 255, 0.48);
+    --tv-accent-contrast: #ffffff;
+    --tv-bull: #089981;
+    --tv-bull-soft: rgba(8, 153, 129, 0.16);
+    --tv-bear: #f23645;
+    --tv-bear-soft: rgba(242, 54, 69, 0.16);
+    --tv-chart-bg: #0c0f17;
+    --tv-chart-grid: #191e2b;
+    --tv-blur: 18px;
+    --tv-shadow: 0 24px 70px rgba(0, 0, 0, 0.72);
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100dvh;
+    width: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--tv-bg-app);
+    color: var(--tv-text);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.tv-glass-bar {
+  background-color: var(--tv-bg-bar);
+  backdrop-filter: blur(var(--tv-blur));
+  -webkit-backdrop-filter: blur(var(--tv-blur));
+  border-color: var(--tv-border-glass);
+}
+
+.tv-glass-panel {
+  background-color: var(--tv-bg-panel);
+  backdrop-filter: blur(var(--tv-blur));
+  -webkit-backdrop-filter: blur(var(--tv-blur));
+  border-color: var(--tv-border-glass);
+}
+
+.tv-glass-popover {
+  background-color: var(--tv-bg-popover);
+  backdrop-filter: blur(calc(var(--tv-blur) + 6px));
+  -webkit-backdrop-filter: blur(calc(var(--tv-blur) + 6px));
+  border-color: var(--tv-border-glass);
+  box-shadow: var(--tv-shadow);
+}
+
+.tv-glass-card {
+  background-color: var(--tv-bg-elevated);
+  border-color: var(--tv-border-glass);
+}
+
+.tv-glass-input {
+  background-color: var(--tv-bg-input);
+  border-color: var(--tv-border-glass);
+  color: var(--tv-text);
+}
+
+/* Custom TradingView slim theme-aware scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tv-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tv-text-muted);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "TradingView Pro — Supercharts & Real-Time Futures Terminal",
+  "description": "1:1 TradingView Supercharts replica powered by Lightweight Charts and live WebSocket market data feeds with institutional IV walls, custom timeframes, watchlist, drawing tools, and bar replay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

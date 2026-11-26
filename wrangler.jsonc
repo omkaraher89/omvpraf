@@ -1,0 +1,39 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "omvpraf",
+  // Bundled Worker entry (npm run build:worker). It serves /api/* and the SPA assets.
+  "main": "dist-worker/worker.js",
+  "compatibility_date": "2026-11-23",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+
+  // NOTE: no `limits.cpu_ms` on purpose. Cloudflare rejects it on the Free plan
+  // ("CPU limits are not supported for the Free plan", code 100328). Password
+  // hashing is tuned to fit the Free plan's 10 ms budget - see PBKDF2_ITERATIONS
+  // in worker/auth.ts. On the Workers Paid plan you can add "limits": {"cpu_ms": 50}
+  // and raise PBKDF2_ITERATIONS back to 100_000.
+
+  "observability": {
+    "enabled": true
+  },
+
+  // --- Database -------------------------------------------------------------
+  // 1. npx wrangler d1 create chartflow
+  // 2. paste the returned database_id below
+  // 3. npx wrangler d1 execute chartflow --remote --file=./sql/schema.sql
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "chartflow",
+      "database_id": "efe71b5b-8a79-44e6-b6e4-694f238220c0"
+    }
+  ]
+
+  // --- Secrets --------------------------------------------------------------
+  // LSE_API_KEY is not stored here. Add it with:
+  //   npx wrangler secret put LSE_API_KEY
+  // or in the dashboard: Workers & Pages -> chartflow-terminal -> Settings ->
+  // Variables and Secrets -> Add -> type "Secret".
+}
